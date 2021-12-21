@@ -13,15 +13,24 @@ func TestPartOne(t *testing.T) {
 		input []string
 	}{
 		{
-			desc:  "example",
-			want:  -1,
-			input: util.PrepareExampleInput(``),
+			desc: "example",
+			want: 40,
+			input: util.PrepareExampleInput(`1163751742
+				1381373672
+				2136511328
+				3694931569
+				7463417111
+				1319128137
+				1359912421
+				3125421639
+				1293138521
+				2311944581`),
 		},
-		// {
-		// 	desc:  "actual",
-		// 	want:  -1,
-		// 	input: util.ReadInputFile("./input.txt"),
-		// },
+		{
+			desc:  "actual",
+			want:  685,
+			input: util.ReadInputFile("./input.txt"),
+		},
 	}
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
@@ -41,15 +50,24 @@ func TestPartTwo(t *testing.T) {
 		input []string
 	}{
 		{
-			desc:  "example",
-			want:  -1,
-			input: util.PrepareExampleInput(``),
+			desc: "example",
+			want: 315,
+			input: util.PrepareExampleInput(`1163751742
+				1381373672
+				2136511328
+				3694931569
+				7463417111
+				1319128137
+				1359912421
+				3125421639
+				1293138521
+				2311944581`),
 		},
-		// {
-		// 	desc:  "actual",
-		// 	want:  -1,
-		// 	input: util.ReadInputFile("./input.txt"),
-		// },
+		{
+			desc:  "actual",
+			want:  2995,
+			input: util.ReadInputFile("./input.txt"),
+		},
 	}
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
