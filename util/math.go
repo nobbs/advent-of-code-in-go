@@ -1,5 +1,26 @@
 package util
 
+func AbsInt(v int) int {
+	if v < 0 {
+		return -v
+	}
+	return v
+}
+
+func MaxInt(u, v int) int {
+	if u < v {
+		return v
+	}
+	return u
+}
+
+func MinInt(u, v int) int {
+	if u < v {
+		return u
+	}
+	return v
+}
+
 func ChineseRemainderTheorem(num []int, rem []int) int {
 	N := 1
 	for _, n := range num {
