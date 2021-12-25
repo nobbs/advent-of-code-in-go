@@ -282,8 +282,8 @@ func parseInput(lines []string) []Scanner {
 				z: util.ParseInt(coords[2]),
 			})
 		} else {
-			// if the line is empty, the current scanner is done and can be added to the list of
-			// read scanners. but first, also compute the fingerprints of the beacons
+			// if the line is empty, the current scanner is done and can be added to the list of read scanners. but
+			// first, also compute the fingerprints of the beacons
 			current.fingerprints = computeFingerprints(current.beacons)
 			scanners = append(scanners, current)
 		}
@@ -328,9 +328,8 @@ func matchScanners(scanners []Scanner) (map[Pair]MatchingPair, []int) {
 		unmatched[i] = true
 	}
 
-	// prevMatch is used to store the scanner, that the scanner with the respective
-	// index was matched against - this allows the reconstruction of all required
-	// rotations starting from scanner 0
+	// prevMatch is used to store the scanner, that the scanner with the respective index was matched against - this
+	// allows the reconstruction of all required rotations starting from scanner 0
 	prevMatch := make([]int, len(scanners))
 
 	// try to match a scanner that is yet unmatched
@@ -355,11 +354,10 @@ func matchScanners(scanners []Scanner) (map[Pair]MatchingPair, []int) {
 									translations := map[XYZ][]Translation{}
 									for originalIndex, original := range []XYZ{finger.p, finger.q, finger.r} {
 										for foreignIndex, foreign := range []XYZ{fingerCheck.p, fingerCheck.q, fingerCheck.r} {
-											// compute the points of the triangle in the matched scanner to all possible
-											// combinations of the triangle in the not yet matched scanners position system
+											// compute translatio of points of the triangle in the matched scanner to
+											// all possible combinations of the triangle in the not yet matched scanners
+											// position system after rotation
 											diff := rotate(foreign, rotationID).Sub(original)
-											// rot := original.Sub(rotate(foreign, rotationID))
-											// rot = rot.Sub(original)
 											v, ok := translations[diff]
 											if ok {
 												v = append(v, Translation{originalIndex, foreignIndex, rotationID})
@@ -370,7 +368,8 @@ func matchScanners(scanners []Scanner) (map[Pair]MatchingPair, []int) {
 										}
 
 									}
-									// now, we've to check if we found a common translation
+									// now, we've to check if we found a common translation, i.e. if there's a
+									// translation vector that appeared three times, this must be the common translation
 									for k, v := range translations {
 										if len(v) >= 3 {
 											// found a match, stop prco
@@ -389,7 +388,6 @@ func matchScanners(scanners []Scanner) (map[Pair]MatchingPair, []int) {
 				}
 			}
 		}
-		// fmt.Printf("nextNewlyMatchedScanners: %v\n", nextNewlyMatchedScanners)
 		newlyMatchedScanners = nextNewlyMatchedScanners
 	}
 
@@ -498,17 +496,6 @@ func main() {
 
 	solutionOne := partOne(lines)
 	fmt.Println("Solution for part 1:", solutionOne)
-
-	// p := XYZ{1, -2, 3}
-	// for rid := 0; rid < 24; rid++ {
-	// 	q := rotate(p, rid)
-	// 	for irid := 0; irid < 24; irid++ {
-	// 		u := rotate(q, irid)
-	// 		if p.x == u.x && p.y == u.y && p.z == u.z {
-	// 			fmt.Printf("rid: %v, irid: %v\n", rid, irid)
-	// 		}
-	// 	}
-	// }
 
 	solutionTwo := partTwo(lines)
 	fmt.Println("Solution for part 2:", solutionTwo)
